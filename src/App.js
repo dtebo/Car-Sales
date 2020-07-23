@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
@@ -7,7 +7,11 @@ import Total from './components/Total';
 
 import { addFeature } from './actions/actions';
 
-const App = () => {
+class App extends Component{
+  constructor(props){
+    super(props);
+  }
+
   // const state = {
   //   additionalPrice: 0,
   //   car: {
@@ -25,34 +29,36 @@ const App = () => {
   //   ]
   // };
 
-  const mapStateToProps = state => {
-    return {
-      car: state.car,
-      additionalFeatures: state.additionalFeatures,
-      additionalPrice: state.additionalPrice
-    }
-  };
-
-  const addFeature = (feature) => {
+  addFeature = (feature) => {
     //Add the new feature
     addFeature(feature);
   };
 
-  return (
-    <div className="boxes">
-      <div className="box">
-        <Header car={this.state.car} />
-        <AddedFeatures car={this.state.car} />
+  render(){
+    return (
+      <div className="boxes">
+        <div className="box">
+          <Header car={this.props.car} />
+          <AddedFeatures car={this.props.car} />
+        </div>
+        <div className="box">
+          <AdditionalFeatures
+            additionalFeatures={this.props.additionalFeatures}
+            addFeature={this.addFeature}
+          />
+          <Total car={this.props.car} additionalPrice={this.props.additionalPrice} />
+        </div>
       </div>
-      <div className="box">
-        <AdditionalFeatures
-          additionalFeatures={this.state.additionalFeatures}
-          addFeature={addFeature}
-        />
-        <Total car={this.state.car} additionalPrice={this.state.additionalPrice} />
-      </div>
-    </div>
-  );
+    );
+  }
+};
+
+const mapStateToProps = state => {
+  return {
+    car: state.car,
+    additionalFeatures: state.additionalFeatures,
+    additionalPrice: state.additionalPrice
+  };
 };
 
 export default connect(mapStateToProps, { addFeature })(App);
