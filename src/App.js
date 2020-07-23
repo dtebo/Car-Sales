@@ -34,18 +34,22 @@ const App = () => {
   };
 
   const addFeature = (feature) => {
-    
+    //Add the new feature
+    addFeature(feature);
   };
-  
+
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={state.car} />
-        <AddedFeatures car={state.car} />
+        <Header car={this.state.car} />
+        <AddedFeatures car={this.state.car} />
       </div>
       <div className="box">
-        <AdditionalFeatures additionalFeatures={state.additionalFeatures} />
-        <Total car={state.car} additionalPrice={state.additionalPrice} />
+        <AdditionalFeatures
+          additionalFeatures={this.state.additionalFeatures}
+          addFeature={addFeature}
+        />
+        <Total car={this.state.car} additionalPrice={this.state.additionalPrice} />
       </div>
     </div>
   );
