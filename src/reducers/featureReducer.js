@@ -22,9 +22,9 @@ export const featureReducer = (state = initialState, action) => {
         case ADD_FEATURE:
             console.log(action.payload);
             return {
-                ...state,
+                ...state.car,
                 features: [
-                    ...state.features,
+                    ...state.car.features,
                     action.payload
                 ]
             }
