@@ -5,7 +5,8 @@ import { addFeature } from '../actions/actions';
 
 const AdditionalFeature = props => {
   const addCarFeature = (feature) => {
-    addFeature(feature);
+    props.addFeature(feature);
+    console.log('from additional feature add feature: ', feature);
   }
 
   return (
@@ -29,4 +30,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(AdditionalFeature);
+export default connect(mapStateToProps, { addFeature })(AdditionalFeature);
