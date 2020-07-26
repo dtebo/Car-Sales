@@ -8,7 +8,7 @@ import App from './App';
 import 'bulma/css/bulma.css';
 import './styles.scss';
 
-import rootReducer from './reducers/reducer';
+import { rootReducer } from './reducers/index';
 
 const store = createStore(rootReducer);
 

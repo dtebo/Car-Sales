@@ -3,11 +3,11 @@ import { ADD_FEATURE } from "../actions/actions";
 const initialState = {
     additionalPrice: 0,
     car: {
-      price: 26395,
-      name: '2019 Ford Mustang',
-      image:
-        'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
-      features: []
+        price: 26395,
+        name: '2019 Ford Mustang',
+        image:
+          'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
+        features: []
     },
     additionalFeatures: [
       { id: 1, name: 'V-6 engine', price: 1500 },
@@ -17,14 +17,18 @@ const initialState = {
     ]
 };
 
-const reducer = (state = initialState, action) => {
+export const featureReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_FEATURE:
             console.log(action.payload);
-            break;
+            return {
+                ...state,
+                features: [
+                    ...state.features,
+                    action.payload
+                ]
+            }
         default:
             return state;
     }
 };
-
-export default reducer;
