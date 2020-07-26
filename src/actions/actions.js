@@ -1,5 +1,5 @@
 export const ADD_FEATURE = 'ADD_FEATURE';
-export const UPDATE_CAR = 'UPDATE_CAR';
+export const REMOVE_FEATURE = 'REMOVE_FEATURE';
 
 export const addFeature = (newFeature) => {
     return {
@@ -8,9 +8,9 @@ export const addFeature = (newFeature) => {
     };
 };
 
-export const updateCar = (itemToUpdate) => {
+export const removeFeature = (featureToRemove) => {
     return {
-        type: UPDATE_CAR,
-        payload: itemToUpdate
+        type: REMOVE_FEATURE,
+        payload: featureToRemove
     };
 };
