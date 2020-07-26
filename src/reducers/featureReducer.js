@@ -20,7 +20,6 @@ const initialState = {
 export const featureReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_FEATURE:
-            console.log(action.payload);
             return {
                 ...state,
                 car: {

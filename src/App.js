@@ -1,35 +1,41 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { /*connect*/ useSelector } from 'react-redux';
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
-class App extends Component{
-  render(){
-    return (
-      <div className="boxes">
-        <div className="box">
-          <Header car={this.props.car} />
-          <AddedFeatures car={this.props.car} />
-        </div>
-        <div className="box">
-          <AdditionalFeatures
-            additionalFeatures={this.props.additionalFeatures}
-          />
-          <Total car={this.props.car} additionalPrice={this.props.additionalPrice} />
-        </div>
+const App = (props) => {
+  const {
+    car,
+    additionalFeatures,
+    additionalPrice
+  } = useSelector(state => state);
+  
+  return (
+    <div className="boxes">
+      <div className="box">
+        <Header car={car} />
+        <AddedFeatures car={car} />
       </div>
-    );
-  }
+      <div className="box">
+        <AdditionalFeatures
+          additionalFeatures={additionalFeatures}
+        />
+        <Total car={car} additionalPrice={additionalPrice} />
+      </div>
+    </div>
+  );
 };
 
-const mapStateToProps = state => {
-  return {
-    car: state.car,
-    additionalFeatures: state.additionalFeatures,
-    additionalPrice: state.additionalPrice
-  };
-};
+/*Refactored to use hooks instead*/
+// const mapStateToProps = state => {
+//   return {
+//     car: state.car,
+//     additionalFeatures: state.additionalFeatures,
+//     additionalPrice: state.additionalPrice
+//   };
+// };
 
-export default connect(mapStateToProps, { })(App);
+
+export default App;

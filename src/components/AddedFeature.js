@@ -1,12 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { removeFeature } from '../actions/actions';
 
 const AddedFeature = props => {
+  const dispatch = useDispatch();
+  const carFeature = useSelector(state => state.car.features[props.feature.id]);
+
   const removeFeature = (feature) => {
-    //Remember to always call action creators with props.<actionCreatorName>
-    props.removeFeature(feature);
+    //Remember to always call action creators with props.<actionCreatorName> (when using connect, not with hooks)
+    removeFeature(feature);
   };
 
   return (
@@ -15,7 +18,7 @@ const AddedFeature = props => {
       <button
         className="button"
         onClick={() => {
-            removeFeature(props.feature)
+            dispatch({ type: 'REMOVE_FEATURE', payload: props.feature});
           }
         }
       >
@@ -26,12 +29,13 @@ const AddedFeature = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    id: state.car.features.id,
-    name: state.car.features.name,
-    price: state.car.features.price
-  }
-};
+/*Refactored to use redux hooks*/
+// const mapStateToProps = state => {
+//   return {
+//     id: state.car.features.id,
+//     name: state.car.features.name,
+//     price: state.car.features.price
+//   }
+// };
 
-export default connect(mapStateToProps, { removeFeature })(AddedFeature);
+export default AddedFeature;

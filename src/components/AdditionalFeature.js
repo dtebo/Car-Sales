@@ -1,11 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { addFeature } from '../actions/actions';
 
 const AdditionalFeature = props => {
+  const dispatch = useDispatch();
+  const carFeature = useSelector(state => state.car.features[props.feature.id]);
+
   const addCarFeature = (feature) => {
-    props.addFeature(feature);
+    addFeature(feature);
     console.log('from additional feature add feature: ', feature);
   }
 
@@ -14,7 +17,7 @@ const AdditionalFeature = props => {
       {/* Add an onClick that will let you add a feature to your car */}
       <button
         className="button"
-        onClick={() => addCarFeature(props.feature)}
+        onClick={() => dispatch({ type: 'ADD_FEATURE', payload: props.feature})}
       >
         Add
       </button>
@@ -23,11 +26,12 @@ const AdditionalFeature = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    name: state.car.features.name,
-    price: state.car.features.price
-  };
-};
+/*Refactored to use redux hooks*/
+// const mapStateToProps = state => {
+//   return {
+//     name: state.car.features.name,
+//     price: state.car.features.price
+//   };
+// };
 
-export default connect(mapStateToProps, { addFeature })(AdditionalFeature);
+export default AdditionalFeature;
