@@ -36,7 +36,12 @@ export const featureReducer = (state = initialState, action) => {
                 ...state,
                 car: {
                     ...state.car,
-                    features: state.car.features.filter((feature) => feature.id === action.payload.id)
+                    features: [
+                        ...state.car.features.filter((feature) => { 
+                            console.log('from feature reducer remove feature', feature);
+                            return feature.id !== action.payload.id
+                        })
+                    ]
                 }
             }       
         default:
