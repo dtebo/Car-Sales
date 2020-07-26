@@ -8,9 +8,9 @@ import App from './App';
 import 'bulma/css/bulma.css';
 import './styles.scss';
 
-import { rootReducer } from './reducers/index';
+import { featureReducer } from './reducers/featureReducer';
 
-const store = createStore(rootReducer);
+const store = createStore(featureReducer);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(

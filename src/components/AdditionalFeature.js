@@ -24,8 +24,8 @@ const AdditionalFeature = props => {
 
 const mapStateToProps = state => {
   return {
-    name: state.features.name,
-    price: state.features.price
+    name: state.car.features.name,
+    price: state.car.features.price
   };
 };
 
